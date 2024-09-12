@@ -1,0 +1,108 @@
+* build_4oph_super.inp: Generates a PSF and coordinate for 4oph super cell
+* jeg240912
+*
+
+iofo exte
+
+! Number of segments in the unit cell
+set nxtal 12
+
+! Protein name and charmm directory
+set M 4oph
+set chm_dir /home/jeg/sw/charmm/c49a10
+
+! Topology and parameter files
+read rtf card name @{chm_dir}/toppar/top_all36_prot.rtf
+read para card flex name @{chm_dir}/toppar/par_all36m_prot.prm
+stream @{chm_dir}/toppar/toppar_water_ions.str
+
+! Read sequence card for single 4oph segment
+! For practicality, we are including the first missing MET and removing the
+! trailing C-terminal residues that are missing from the PDB entry
+read sequ card
+* 4oph sequence
+*
+203
+MET ASP SER ASN THR VAL SER SER PHE GLN VAL ASP CYS
+PHE LEU TRP HSD VAL ARG LYS ARG PHE ALA ASP GLN GLU
+LEU GLY ASP ALA PRO PHE LEU ASP ARG LEU ARG ALA ASP
+GLN ALA SER LEU ARG GLY ARG GLY SER THR LEU GLY LEU
+ASP ILE GLU THR ALA THR ARG ALA GLY LYS GLN ILE VAL
+GLU ARG ILE LEU GLU GLU GLU SER ASP GLU ALA LEU LYS
+MET THR ILE ALA SER VAL PRO ALA SER ARG TYR LEU THR
+ASP MET THR LEU GLU GLU MET SER ARG ASP TRP PHE MET
+LEU MET PRO LYS GLN LYS VAL ALA GLY SER LEU CYS ILE
+ARG MET ASP GLN ALA ILE MET ASP LYS ASN ILE ILE LEU
+LYS ALA ASN PHE SER VAL ILE PHE ASP ARG LEU GLU THR
+LEU ILE LEU LEU ARG ALA PHE THR GLU GLU GLY ALA ILE
+VAL GLY GLU ILE SER PRO LEU PRO SER LEU PRO GLY HSD
+THR ASP GLU ASP VAL LYS ASN ALA ILE GLY VAL LEU ILE
+GLY GLY LEU GLU TRP ASN ASP ASN THR VAL ARG VAL SER
+GLU THR LEU GLN ARG PHE ALA TRP
+
+! Generate original PSF
+gene setup A000 first NTER last CTER
+
+! Duplicate segment for the rest of the molecules in the unit cell
+set i 1
+label L0
+if @i .lt. 10 then
+gene A00@i dupl A000 setup
+else
+if @i .lt. 100 then
+gene A0@i dupl A000 setup
+else
+if @i .lt. 1000 then
+gene A@i dupl A000 setup
+endif
+endif
+endif
+incr i by 1
+if @i .lt. @{nxtal} goto L0
+
+set i 1
+label L2
+calc offset @i * @{nxtal}
+set j 0
+label L3
+calc k @{offset} + @j
+if @k .lt. 10 then
+gene A00@k dupl A000 setup
+else
+if @k .lt. 100 then
+gene A0@k dupl A000 setup
+else
+if @k .lt. 1000 then
+gene A@k dupl A000 setup
+endif
+endif
+endif
+incr j by 1
+if @j .lt. @{nxtal} goto L3
+incr i by 1
+if @i .lt. 8 goto L2
+
+! Read coordinates
+! Here we can ignore the warnings about TRP not having the "O" atom since we are
+! adding the CTER patch to it
+read coor pdb resi name @M_super.pdb
+
+! Fill missing coordinates and add hydrogens
+ic purge
+ic param
+ic fill pres
+ic build
+define test sele ( .not. type H* ) .and. ( .not. init ) show end
+hbuild sele type H* end
+
+! Write PSF and coordinates
+write psf card name @M_super.psf
+* @M super cell
+*
+
+write coor card name @M_super.cor
+* @M super cell
+*
+
+
+stop

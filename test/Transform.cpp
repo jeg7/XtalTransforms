@@ -21,8 +21,12 @@ int main(int argc, char **argv) {
 
   auto xtalTransformer =
       std::make_shared<XtalTransformer>(std::string(argv[1]));
-  xtalTransformer->applyTransformations();
-  xtalTransformer->writePdbFile("tmp.pdb");
+
+  xtalTransformer->generateUnitCell();
+  xtalTransformer->writePdbFile("./data/4oph_unit.pdb");
+
+  xtalTransformer->generateSuperCell();
+  xtalTransformer->writePdbFile("./data/4oph_super.pdb");
 
   return 0;
 }

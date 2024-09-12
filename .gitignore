@@ -28,9 +28,13 @@
 
 # Executables
 *.exe
-*.out
 *.app
 
 build/
 bin/
 tmp*
+
+data/4oph_raw_super.pdb
+data/4oph_raw_unit.pdb
+data/4oph_*.psf
+data/4oph_*.cor

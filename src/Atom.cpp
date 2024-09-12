@@ -14,19 +14,20 @@ Atom::Atom(void)
     : m_Index(0), m_Label(""), m_ResidueName(""), m_Chain(""),
       m_ResidueIdentifier(""), m_CoordinateX(0.0), m_CoordinateY(0.0),
       m_CoordinateZ(0.0), m_Occupancy(0.0), m_TemperatureFactor(0.0),
-      m_Type("") {}
+      m_Type(""), m_SegmentIdentifier("") {}
 
 Atom::Atom(const std::size_t index, const std::string &label,
            const std::string &residueName, const std::string &chain,
            const std::string &residueIdentifier, const double coordinateX,
            const double coordinateY, const double coordinateZ,
            const double occupancy, const double temperatureFactor,
-           const std::string &atype)
+           const std::string &atype, const std::string &segmentIdentifier)
     : m_Index(index), m_Label(label), m_ResidueName(residueName),
       m_Chain(chain), m_ResidueIdentifier(residueIdentifier),
       m_CoordinateX(coordinateX), m_CoordinateY(coordinateY),
       m_CoordinateZ(coordinateZ), m_Occupancy(occupancy),
-      m_TemperatureFactor(temperatureFactor), m_Type(atype) {}
+      m_TemperatureFactor(temperatureFactor), m_Type(atype),
+      m_SegmentIdentifier(segmentIdentifier) {}
 
 Atom::Atom(const Atom &other)
     : m_Index(other.m_Index), m_Label(other.m_Label),
@@ -34,7 +35,8 @@ Atom::Atom(const Atom &other)
       m_ResidueIdentifier(other.m_ResidueIdentifier),
       m_CoordinateX(other.m_CoordinateX), m_CoordinateY(other.m_CoordinateY),
       m_CoordinateZ(other.m_CoordinateZ), m_Occupancy(other.m_Occupancy),
-      m_TemperatureFactor(other.m_TemperatureFactor), m_Type(other.m_Type) {}
+      m_TemperatureFactor(other.m_TemperatureFactor), m_Type(other.m_Type),
+      m_SegmentIdentifier(other.m_SegmentIdentifier) {}
 
 Atom::Atom(const Atom &&other)
     : m_Index(other.m_Index), m_Label(other.m_Label),
@@ -42,7 +44,8 @@ Atom::Atom(const Atom &&other)
       m_ResidueIdentifier(other.m_ResidueIdentifier),
       m_CoordinateX(other.m_CoordinateX), m_CoordinateY(other.m_CoordinateY),
       m_CoordinateZ(other.m_CoordinateZ), m_Occupancy(other.m_Occupancy),
-      m_TemperatureFactor(other.m_TemperatureFactor), m_Type(other.m_Type) {}
+      m_TemperatureFactor(other.m_TemperatureFactor), m_Type(other.m_Type),
+      m_SegmentIdentifier(other.m_SegmentIdentifier) {}
 
 Atom &Atom::operator=(const Atom &other) {
   m_Index = other.m_Index;
@@ -56,6 +59,7 @@ Atom &Atom::operator=(const Atom &other) {
   m_Occupancy = other.m_Occupancy;
   m_TemperatureFactor = other.m_TemperatureFactor;
   m_Type = other.m_Type;
+  m_SegmentIdentifier = other.m_SegmentIdentifier;
   return *this;
 }
 
@@ -71,6 +75,7 @@ Atom &Atom::operator=(const Atom &&other) {
   m_Occupancy = other.m_Occupancy;
   m_TemperatureFactor = other.m_TemperatureFactor;
   m_Type = other.m_Type;
+  m_SegmentIdentifier = other.m_SegmentIdentifier;
   return *this;
 }
 
@@ -129,6 +134,11 @@ void Atom::setType(const std::string &atype) {
   return;
 }
 
+void Atom::setSegmentIdentifier(const std::string &segmentIdentifier) {
+  m_SegmentIdentifier = segmentIdentifier;
+  return;
+}
+
 std::size_t Atom::getIndex(void) const { return m_Index; }
 
 const std::string &Atom::getLabel(void) const { return m_Label; }
@@ -153,6 +163,10 @@ double Atom::getTemperatureFactor(void) const { return m_TemperatureFactor; }
 
 const std::string &Atom::getType(void) const { return m_Type; }
 
+const std::string &Atom::getSegmentIdentifier(void) const {
+  return m_SegmentIdentifier;
+}
+
 std::size_t &Atom::getIndex(void) { return m_Index; }
 
 std::string &Atom::getLabel(void) { return m_Label; }
@@ -174,3 +188,5 @@ double &Atom::getOccupancy(void) { return m_Occupancy; }
 double &Atom::getTemperatureFactor(void) { return m_TemperatureFactor; }
 
 std::string &Atom::getType(void) { return m_Type; }
+
+std::string &Atom::getSegmentIdentifier(void) { return m_SegmentIdentifier; }

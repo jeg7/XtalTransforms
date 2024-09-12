@@ -23,7 +23,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   # Compiler flags
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
   set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
-  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Werror")
+  set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
   # Testing only available if this is the main app
   # Note this needs to be done in the main CMakeLists

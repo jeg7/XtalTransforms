@@ -22,14 +22,21 @@ public:
   XtalTransformer(const std::string &pdbFileName);
 
 public:
-  void applyTransformations(void);
+  void generateUnitCell(void);
+  void generateSuperCell(void);
+  // void writeCharmmCoordinateFile(const std::string &fileName);
   void writePdbFile(const std::string &pdbFileName);
 
 private:
   void applyTransformation(double &x, double &y, double &z,
                            const std::array<double, 9> &rot,
                            const std::array<double, 3> &trn);
-  void duplicateAtoms(void);
+
+private:
+  void fractionalToCartesian(double &x, double &y, double &z, const double u,
+                             const double v, const double w);
+  void cartesianToFractional(double &u, double &v, double &w, const double x,
+                             const double y, const double z);
 
 private:
   void readCrystalTransformationsFromPdbFile(const std::string &pdbFileName);
@@ -38,16 +45,12 @@ private:
 
 private:
   std::array<double, 6> m_UnitCellDimensions;
-  double m_DimensionA;
-  double m_DimensionB;
-  double m_DimensionC;
-  double m_AngleAlpha;
-  double m_AngleBeta;
-  double m_AngleGamma;
   std::size_t m_NumXtalOperations;
   std::vector<std::array<double, 9>> m_UnitCellRotations;
   std::vector<std::array<double, 3>> m_UnitCellTranslations;
   std::size_t m_NumAtoms;
   std::size_t m_TotNumAtoms;
   std::vector<Atom> m_Atoms;
+  bool m_HasUnitCellBeenGenerated;
+  bool m_HasSuperCellBeenGenerated;
 };

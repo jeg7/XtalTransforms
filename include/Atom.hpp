@@ -21,7 +21,7 @@ public:
        const std::string &residueIdentifier, const double coordinateX,
        const double coordinataeY, const double coordinateZ,
        const double occupancy, const double temperatureFactor,
-       const std::string &atype);
+       const std::string &atype, const std::string &segmentIdentifier);
   Atom(const Atom &other);
   Atom(const Atom &&other);
 
@@ -41,6 +41,7 @@ public:
   void setOccupancy(const double occupancy);
   void setTemperatureFactor(const double temperatureFactor);
   void setType(const std::string &atype);
+  void setSegmentIdentifier(const std::string &segmentIdentifier);
 
 public:
   std::size_t getIndex(void) const;
@@ -54,6 +55,7 @@ public:
   double getOccupancy(void) const;
   double getTemperatureFactor(void) const;
   const std::string &getType(void) const;
+  const std::string &getSegmentIdentifier(void) const;
 
 public:
   std::size_t &getIndex(void);
@@ -67,6 +69,7 @@ public:
   double &getOccupancy(void);
   double &getTemperatureFactor(void);
   std::string &getType(void);
+  std::string &getSegmentIdentifier(void);
 
 private:
   std::size_t m_Index;
@@ -80,4 +83,5 @@ private:
   double m_Occupancy;
   double m_TemperatureFactor;
   std::string m_Type;
+  std::string m_SegmentIdentifier;
 };
