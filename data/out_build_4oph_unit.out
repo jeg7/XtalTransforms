@@ -4,8 +4,8 @@
                                 Revision unknown                                
        Copyright(c) 1984-2023  President and Fellows of Harvard College
                               All Rights Reserved
-         Current operating system: Linux-6.8.0-40-generic(x86_64)@koios         
-                 Created on  9/12/24 at 11:45:26 by user: jeg         
+         Current operating system: Linux-6.8.0-45-generic(x86_64)@koios         
+                 Created on  9/19/24 at 14:57:30 by user: jeg         
 
             Maximum number of ATOMS:    360720, and RESidues:      120240
  RDTITL> * BUILD_4OPH_UNIT.INP: GENERATES A PSF AND COORDINATE FILE FOR 4OPH UNIT CELL
@@ -655,37 +655,37 @@
  INDEX= 3087 IRES=  203 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX= 6184 IRES=  406 RESID=203  RES=TRP  ATOM=O   
+ INDEX= 4641 IRES=  406 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX= 7738 IRES=  609 RESID=203  RES=TRP  ATOM=O   
+ INDEX= 6195 IRES=  609 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX= 9292 IRES=  812 RESID=203  RES=TRP  ATOM=O   
+ INDEX= 7749 IRES=  812 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=10846 IRES= 1015 RESID=203  RES=TRP  ATOM=O   
+ INDEX= 9303 IRES= 1015 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=12400 IRES= 1218 RESID=203  RES=TRP  ATOM=O   
+ INDEX=10857 IRES= 1218 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=13954 IRES= 1421 RESID=203  RES=TRP  ATOM=O   
+ INDEX=12411 IRES= 1421 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=15508 IRES= 1624 RESID=203  RES=TRP  ATOM=O   
+ INDEX=13965 IRES= 1624 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=17062 IRES= 1827 RESID=203  RES=TRP  ATOM=O   
+ INDEX=15519 IRES= 1827 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=18616 IRES= 2030 RESID=203  RES=TRP  ATOM=O   
+ INDEX=17073 IRES= 2030 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=20170 IRES= 2233 RESID=203  RES=TRP  ATOM=O   
+ INDEX=18627 IRES= 2233 RESID=203  RES=TRP  ATOM=O   
 
  ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
- INDEX=21724 IRES= 2436 RESID=203  RES=TRP  ATOM=O   
+ INDEX=20181 IRES= 2436 RESID=203  RES=TRP  ATOM=O   
  ** WARNING ** After reading, there are no coordinates for selected atom:     1     1 MET  N   
  ** WARNING ** After reading, there are no coordinates for selected atom:     2     1 MET  HT1 
  ** WARNING ** After reading, there are no coordinates for selected atom:     3     1 MET  HT2 
@@ -18137,14 +18137,12 @@ SEGId RESId RESName  .. TYPEs ..
  CHARMM>     
   
  CHARMM>    stop
-      $$$$$$  New timer profile Local node$$$$$
- Total time                      4.55 Other:            0.00
-         $$$$$$  Average   profile $$$$$
- Total time                      4.55 Other:            0.00
+$$$$$$  New timer profile $$$$$
+ Total time                      4.45 Other:            0.00
 
                     NORMAL TERMINATION BY NORMAL STOP
                     MOST SEVERE WARNING WAS AT LEVEL  0
 
                     $$$$$ JOB ACCOUNTING INFORMATION $$$$$
-                     ELAPSED TIME:     4.55  SECONDS 
-                         CPU TIME:     4.55  SECONDS 
+                     ELAPSED TIME:     4.45  SECONDS 
+                         CPU TIME:     4.45  SECONDS 

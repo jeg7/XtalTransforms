@@ -1,0 +1,1380 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+           (CHARMM) - Developmental Version 49a1     August 15, 2023            
+                                Revision unknown                                
+       Copyright(c) 1984-2023  President and Fellows of Harvard College
+                              All Rights Reserved
+         Current operating system: Linux-6.8.0-45-generic(x86_64)@koios         
+                 Created on  9/19/24 at 15:03:05 by user: jeg         
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> * BUILD_2Y2A_UNIT.INP: GENERATES A PSF AND COORDINATE FILE FOR 2Y2A UNIT CELL
+ RDTITL> * JEG240919
+ RDTITL> *
+  
+ CHARMM>    iofo exte
+ MISCOM> Expanded I/O format is used.
+  
+ CHARMM>     
+  
+ CHARMM>    ! Number of segments in the unit cell
+ CHARMM>    set nxtal 4
+ Parameter: NXTAL <- "4"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Protein name and charmm directory
+ CHARMM>    set M 2y2a
+ Parameter: M <- "2Y2A"
+  
+ CHARMM>    set chm_dir /home/jeg/sw/charmm/c49a10
+ Parameter: CHM_DIR <- "/HOME/JEG/SW/CHARMM/C49A10"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Topology and parameter files
+ CHARMM>    read rtf card name @{chm_dir}/toppar/top_all36_prot.rtf
+ Parameter: CHM_DIR -> "/HOME/JEG/SW/CHARMM/C49A10"
+ VOPEN> Attempting to open::/home/jeg/sw/charmm/c49a10/toppar/top_all36_prot.rtf::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM36 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> MAY 2011 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read para card flex name @{chm_dir}/toppar/par_all36m_prot.prm
+ Parameter: CHM_DIR -> "/HOME/JEG/SW/CHARMM/C49A10"
+ VOPEN> Attempting to open::/home/jeg/sw/charmm/c49a10/toppar/par_all36m_prot.prm::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>> CHARMM36 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> JAN. 2016 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    stream @{chm_dir}/toppar/toppar_water_ions.str
+ Parameter: CHM_DIR -> "/HOME/JEG/SW/CHARMM/C49A10"
+ VOPEN> Attempting to open::/home/jeg/sw/charmm/c49a10/toppar/toppar_water_ions.str::
+ OPNLGU> Unit 99 opened for READONLY access to /home/jeg/sw/charmm/c49a10/toppar/toppar_water_ions.str
+
+                    INPUT STREAM SWITCHING TO UNIT    99
+ RDTITL> * TOPLOGY AND PARAMETER INFORMATION FOR WATER AND IONS.
+ RDTITL> *
+ Parameter: IN1 <- "" <empty>
+  
+ CHARMM>     
+  
+ CHARMM>    !Testcase
+ CHARMM>    !test_water_ions.inp
+ CHARMM>     
+  
+ CHARMM>    ! IMPORTANT NOTE: this file contains NBFixes between carboxylates and sodium,
+ CHARMM>    ! which will only apply if the main files containing carboxylate atom types
+ CHARMM>    ! have been read in first!
+ CHARMM>     
+  
+ CHARMM>    !references
+ CHARMM>    !
+ CHARMM>    !TIP3P water model
+ CHARMM>    !
+ CHARMM>    !W.L. Jorgensen; J.Chandrasekhar; J.D. Madura; R.W. Impey;
+ CHARMM>    !M.L. Klein; "Comparison of simple potential functions for
+ CHARMM>    !simulating liquid water", J. Chem. Phys. 79 926-935 (1983).
+ CHARMM>    !
+ CHARMM>    !IONS
+ CHARMM>    !
+ CHARMM>    !Ions from Roux and coworkers
+ CHARMM>    !
+ CHARMM>    !Beglov, D. and Roux, B., Finite Representation of an Infinite
+ CHARMM>    !Bulk System: Solvent Boundary Potential for Computer Simulations,
+ CHARMM>    !Journal of Chemical Physics, 1994, 100: 9050-9063
+ CHARMM>    !
+ CHARMM>    !ZINC
+ CHARMM>    !
+ CHARMM>    !Stote, R.H. and Karplus, M. Zinc Binding in Proteins and
+ CHARMM>    !Solution: A Simple but Accurate Nonbonded Representation, PROTEINS:
+ CHARMM>    !Structure, Function, and Genetics 23:12-31 (1995)
+ CHARMM>     
+  
+ CHARMM>    !test "append" to determine if previous toppar files have been read and
+ CHARMM>    !add append to "read rtf card" if true
+ CHARMM>    set nat ?NATC
+ RDCMND substituted energy or value "?NATC" to "54"
+ Parameter: NAT <- "54"
+  
+ CHARMM>    set app
+ Parameter: APP <- "" <empty>
+  
+ CHARMM>    !We're exploiting what is arguably a bug in the parser. On the left hand side,
+ CHARMM>    !the quotes have priority, so NAT is correctly substituted. On the right hand
+ CHARMM>    !side, the ? has priority and NATC" (sic) is not a valid substitution...
+ CHARMM>    if "@NAT" ne "?NATC" if @nat ne 0 set app append
+ Parameter: NAT -> "54"
+ Parameter: NAT -> "54"
+ RDCMND: can not substitute energy "?NATC""
+ Comparing ""54"" and ""?NATC"".
+ IF test evaluated as true.  Performing command
+ Comparing "54" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: APP <- "APPEND"
+  
+ CHARMM>     
+  
+ CHARMM>    read rtf card @app
+ Parameter: APP -> "APPEND"
+ MAINIO> Residue topology file being read from unit  99.
+ RDTITL> * TOPOLOGY FOR WATER AND IONS
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    read para card flex @app
+ Parameter: APP -> "APPEND"
+
+          PARAMETER FILE BEING READ FROM UNIT 99
+ RDTITL> * PARAMETERS FOR WATER AND IONS
+ RDTITL> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>     
+  
+ CHARMM>    ! The following section contains NBFixes for sodium interacting with
+ CHARMM>    ! carboxylate oxygens of various CHARMM force fields. It will generate
+ CHARMM>    ! level -1 warnings whenever any of these force fields have not been
+ CHARMM>    ! read prior to the current stream file. Since we don't want to force
+ CHARMM>    ! the user to always read all the force fields, we're suppressing the
+ CHARMM>    ! warnings. The only side effect is that you will have "most severe
+ CHARMM>    ! warning was at level 0" at the end of your output. Also note that
+ CHARMM>    ! the user is responsible for reading the current file last if they
+ CHARMM>    ! want the NBFixes to apply. A more elegant solution would require new
+ CHARMM>    ! features to be added to CHARMM.
+ CHARMM>    ! parallel fix, to avoid duplicated messages in the log
+ CHARMM>    set para
+ Parameter: PARA <- "" <empty>
+  
+ CHARMM>    if ?NUMNODE gt 1 set para node 0
+ RDCMND substituted energy or value "?NUMNODE" to "1"
+ Comparing "1" and "1".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>     
+  
+ CHARMM>    set wrn ?WRNLEV
+ RDCMND substituted energy or value "?WRNLEV" to "5"
+ Parameter: WRN <- "5"
+  
+ CHARMM>    ! Some versions of CHARMM don't seem to initialize wrnlev...
+ CHARMM>    if "@WRN" eq "?WRNLEV" set wrn 5
+ Parameter: WRN -> "5"
+ RDCMND: can not substitute energy "?WRNLEV""
+ Comparing ""5"" and ""?WRNLEV"".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    set bom ?bomlev
+ RDCMND substituted energy or value "?BOMLEV" to "0"
+ Parameter: BOM <- "0"
+  
+ CHARMM>    WRNLEV -1 @PARA
+ Parameter: PARA -> "" <empty>
+  
+ CHARMM>    BOMLEV -1 @PARA
+ Parameter: PARA -> "" <empty>
+  
+ CHARMM>    read para card flex append
+
+          PARAMETER FILE BEING READ FROM UNIT 99
+ RDTITL> * NBFIX BETWEEN CARBOXYLATE AND SODIUM
+ RDTITL> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>    BOMLEV @bom @PARA
+ Parameter: BOM -> "0"
+ Parameter: PARA -> "" <empty>
+  
+ CHARMM>    WRNLEV @wrn @PARA
+ Parameter: WRN -> "5"
+ Parameter: PARA -> "" <empty>
+  
+ CHARMM>     
+  
+ CHARMM>    return
+ VCLOSE: Closing unit   99 with status "KEEP"
+
+                    RETURNING TO INPUT STREAM     5
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read sequence card for single 4oph segment
+ CHARMM>    read sequ card
+ MAINIO> Sequence information being read from unit   5.
+ RDTITL> * 2Y2A SEQUENCE
+ RDTITL> *
+  
+ SEQRDR>    6
+  
+ SEQRDR>    LYS LEU VAL PHE PHE ALA
+
+          RESIDUE SEQUENCE --     6 RESIDUES
+          LYS     LEU     VAL     PHE     PHE     ALA     
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS  1 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  HSD -  0  HSE -  0  HSP -  0  ASP -  0  GLU -  0  LYS -  1  TYR -  0
+  
+ CHARMM>     
+  
+ CHARMM>    ! Generate original PSF
+ CHARMM>    gene setup A000 first NTER last CTER
+ THE PATCH 'NTER' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CTER' WILL BE USED FOR THE LAST  RESIDUE
+ AUTGEN: Autogenerating specified angles and dihedrals.
+ GENPSF> Segment   1 has been generated. Its identifier is A000.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        6
+         Number of atoms         =      110   Number of groups     =       38
+         Number of bonds         =      111   Number of angles     =      201
+         Number of dihedrals     =      290   Number of impropers  =       11
+         Number of cross-terms   =        4   Number of autogens   =        0
+         Number of HB acceptors  =        7   Number of HB donors  =       11
+         Number of NB exclusions =        0   Total charge =    1.00000
+  
+ CHARMM>     
+  
+ CHARMM>    ! Duplicate segment for the rest of the molecules in the unit cell
+ CHARMM>    set i 1
+ Parameter: I <- "1"
+  
+ CHARMM>    label L0
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    gene A00@i dupl A000 setup
+ Parameter: I -> "1"
+ GENPSF> Segment   2 has been generated. Its identifier is A001.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        2   Number of residues   =       12
+         Number of atoms         =      220   Number of groups     =       76
+         Number of bonds         =      222   Number of angles     =      402
+         Number of dihedrals     =      580   Number of impropers  =       22
+         Number of cross-terms   =        8   Number of autogens   =        0
+         Number of HB acceptors  =       14   Number of HB donors  =       22
+         Number of NB exclusions =        0   Total charge =    2.00000
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "2"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L0
+ Parameter: I -> "2"
+ Parameter: NXTAL -> "4"
+ Comparing "2" and "4".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    gene A00@i dupl A000 setup
+ Parameter: I -> "2"
+ GENPSF> Segment   3 has been generated. Its identifier is A002.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        3   Number of residues   =       18
+         Number of atoms         =      330   Number of groups     =      114
+         Number of bonds         =      333   Number of angles     =      603
+         Number of dihedrals     =      870   Number of impropers  =       33
+         Number of cross-terms   =       12   Number of autogens   =        0
+         Number of HB acceptors  =       21   Number of HB donors  =       33
+         Number of NB exclusions =        0   Total charge =    3.00000
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "3"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L0
+ Parameter: I -> "3"
+ Parameter: NXTAL -> "4"
+ Comparing "3" and "4".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    gene A00@i dupl A000 setup
+ Parameter: I -> "3"
+ GENPSF> Segment   4 has been generated. Its identifier is A003.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        4   Number of residues   =       24
+         Number of atoms         =      440   Number of groups     =      152
+         Number of bonds         =      444   Number of angles     =      804
+         Number of dihedrals     =     1160   Number of impropers  =       44
+         Number of cross-terms   =       16   Number of autogens   =        0
+         Number of HB acceptors  =       28   Number of HB donors  =       44
+         Number of NB exclusions =        0   Total charge =    4.00000
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "4"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L0
+ Parameter: I -> "4"
+ Parameter: NXTAL -> "4"
+ Comparing "4" and "4".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>     
+  
+ CHARMM>    ! Renumber residues
+ CHARMM>    set i 0
+ Parameter: I <- "0"
+  
+ CHARMM>    label L1
+  
+ CHARMM>    set j 6
+ Parameter: J <- "6"
+  
+ CHARMM>    set k 7
+ Parameter: K <- "7"
+  
+ CHARMM>    label L2
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "7"
+ Parameter: I -> "0"
+ Parameter: J -> "6"
+ SELRPN>     11 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '6       ' IS RENAMED TO '7       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "5"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "6"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "5"
+ Comparing "5" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "6"
+ Parameter: I -> "0"
+ Parameter: J -> "5"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '5       ' IS RENAMED TO '6       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "4"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "5"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "4"
+ Comparing "4" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "5"
+ Parameter: I -> "0"
+ Parameter: J -> "4"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '4       ' IS RENAMED TO '5       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "3"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "4"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "3"
+ Comparing "3" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "4"
+ Parameter: I -> "0"
+ Parameter: J -> "3"
+ SELRPN>     16 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '3       ' IS RENAMED TO '4       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "2"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "3"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "2"
+ Comparing "2" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "3"
+ Parameter: I -> "0"
+ Parameter: J -> "2"
+ SELRPN>     19 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '2       ' IS RENAMED TO '3       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "1"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "2"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "1"
+ Comparing "1" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "0"
+ Comparing "0" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "2"
+ Parameter: I -> "0"
+ Parameter: J -> "1"
+ SELRPN>     24 atoms have been selected out of    440
+ FOR SEGMENT 'A000    ', RESIDUE '1       ' IS RENAMED TO '2       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "0"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "1"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "0"
+ Comparing "0" and "1".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "1"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L1
+ Parameter: I -> "1"
+ Parameter: NXTAL -> "4"
+ Comparing "1" and "4".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    set j 6
+ Parameter: J <- "6"
+  
+ CHARMM>    set k 7
+ Parameter: K <- "7"
+  
+ CHARMM>    label L2
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "7"
+ Parameter: I -> "1"
+ Parameter: J -> "6"
+ SELRPN>     11 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '6       ' IS RENAMED TO '7       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "5"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "6"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "5"
+ Comparing "5" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "6"
+ Parameter: I -> "1"
+ Parameter: J -> "5"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '5       ' IS RENAMED TO '6       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "4"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "5"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "4"
+ Comparing "4" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "5"
+ Parameter: I -> "1"
+ Parameter: J -> "4"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '4       ' IS RENAMED TO '5       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "3"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "4"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "3"
+ Comparing "3" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "4"
+ Parameter: I -> "1"
+ Parameter: J -> "3"
+ SELRPN>     16 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '3       ' IS RENAMED TO '4       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "2"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "3"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "2"
+ Comparing "2" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "3"
+ Parameter: I -> "1"
+ Parameter: J -> "2"
+ SELRPN>     19 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '2       ' IS RENAMED TO '3       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "1"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "2"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "1"
+ Comparing "1" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "1"
+ Comparing "1" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "2"
+ Parameter: I -> "1"
+ Parameter: J -> "1"
+ SELRPN>     24 atoms have been selected out of    440
+ FOR SEGMENT 'A001    ', RESIDUE '1       ' IS RENAMED TO '2       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "0"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "1"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "0"
+ Comparing "0" and "1".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "2"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L1
+ Parameter: I -> "2"
+ Parameter: NXTAL -> "4"
+ Comparing "2" and "4".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    set j 6
+ Parameter: J <- "6"
+  
+ CHARMM>    set k 7
+ Parameter: K <- "7"
+  
+ CHARMM>    label L2
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "7"
+ Parameter: I -> "2"
+ Parameter: J -> "6"
+ SELRPN>     11 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '6       ' IS RENAMED TO '7       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "5"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "6"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "5"
+ Comparing "5" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "6"
+ Parameter: I -> "2"
+ Parameter: J -> "5"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '5       ' IS RENAMED TO '6       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "4"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "5"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "4"
+ Comparing "4" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "5"
+ Parameter: I -> "2"
+ Parameter: J -> "4"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '4       ' IS RENAMED TO '5       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "3"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "4"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "3"
+ Comparing "3" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "4"
+ Parameter: I -> "2"
+ Parameter: J -> "3"
+ SELRPN>     16 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '3       ' IS RENAMED TO '4       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "2"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "3"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "2"
+ Comparing "2" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "3"
+ Parameter: I -> "2"
+ Parameter: J -> "2"
+ SELRPN>     19 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '2       ' IS RENAMED TO '3       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "1"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "2"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "1"
+ Comparing "1" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "2"
+ Comparing "2" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "2"
+ Parameter: I -> "2"
+ Parameter: J -> "1"
+ SELRPN>     24 atoms have been selected out of    440
+ FOR SEGMENT 'A002    ', RESIDUE '1       ' IS RENAMED TO '2       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "0"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "1"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "0"
+ Comparing "0" and "1".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "3"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L1
+ Parameter: I -> "3"
+ Parameter: NXTAL -> "4"
+ Comparing "3" and "4".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    set j 6
+ Parameter: J <- "6"
+  
+ CHARMM>    set k 7
+ Parameter: K <- "7"
+  
+ CHARMM>    label L2
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "7"
+ Parameter: I -> "3"
+ Parameter: J -> "6"
+ SELRPN>     11 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '6       ' IS RENAMED TO '7       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "5"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "6"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "5"
+ Comparing "5" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "6"
+ Parameter: I -> "3"
+ Parameter: J -> "5"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '5       ' IS RENAMED TO '6       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "4"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "5"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "4"
+ Comparing "4" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "5"
+ Parameter: I -> "3"
+ Parameter: J -> "4"
+ SELRPN>     20 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '4       ' IS RENAMED TO '5       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "3"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "4"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "3"
+ Comparing "3" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "4"
+ Parameter: I -> "3"
+ Parameter: J -> "3"
+ SELRPN>     16 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '3       ' IS RENAMED TO '4       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "2"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "3"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "2"
+ Comparing "2" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "3"
+ Parameter: I -> "3"
+ Parameter: J -> "2"
+ SELRPN>     19 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '2       ' IS RENAMED TO '3       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "1"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "2"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "1"
+ Comparing "1" and "1".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    if @i .lt. 10 then
+ Parameter: I -> "3"
+ Comparing "3" and "10".
+ IF test evaluated as true.  Performing command
+  
+ CHARMM>    rename resi @k sele segi A00@i .and. resi @j end
+ Parameter: K -> "2"
+ Parameter: I -> "3"
+ Parameter: J -> "1"
+ SELRPN>     24 atoms have been selected out of    440
+ FOR SEGMENT 'A003    ', RESIDUE '1       ' IS RENAMED TO '2       '
+  
+ CHARMM>    else
+ Skip commands until next ENDIF
+  
+ CHARMM>    decr j by 1
+ Parameter: J <- "0"
+  
+ CHARMM>    decr k by 1
+ Parameter: K <- "1"
+  
+ CHARMM>    if @j .ge. 1 goto L2
+ Parameter: J -> "0"
+ Comparing "0" and "1".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    incr i by 1
+ Parameter: I <- "4"
+  
+ CHARMM>    if @i .lt. @{nxtal} goto L1
+ Parameter: I -> "4"
+ Parameter: NXTAL -> "4"
+ Comparing "4" and "4".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read coordinates
+ CHARMM>    ! Here we can ignore the warnings about TRP not having the "O" atom since we are
+ CHARMM>    ! adding the CTER patch to it
+ CHARMM>    read coor pdb resi name @M_unit.pdb
+ Parameter: M -> "2Y2A"
+ VOPEN> Attempting to open::2y2a_unit.pdb::
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE>  *
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   99 IRES=    6 RESID=7    RES=ALA  ATOM=O   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  103 IRES=    6 RESID=7    RES=ALA  ATOM=OXT 
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  151 IRES=   12 RESID=7    RES=ALA  ATOM=O   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  155 IRES=   12 RESID=7    RES=ALA  ATOM=OXT 
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  203 IRES=   18 RESID=7    RES=ALA  ATOM=O   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  207 IRES=   18 RESID=7    RES=ALA  ATOM=OXT 
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  255 IRES=   24 RESID=7    RES=ALA  ATOM=O   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  259 IRES=   24 RESID=7    RES=ALA  ATOM=OXT 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     2     1 LYS  HT1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     3     1 LYS  HT2 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     4     1 LYS  HT3 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     6     1 LYS  HA  
+ ** WARNING ** After reading, there are no coordinates for selected atom:     8     1 LYS  HB1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     9     1 LYS  HB2 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    11     1 LYS  HG1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    12     1 LYS  HG2 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    14     1 LYS  HD1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    15     1 LYS  HD2 
+
+ ** A total of   240 selected atoms have no coordinates
+
+ ** A total of    8 warnings were encountered during coordinate reading **
+ *** LEVEL  2 WARNING *** BOMLEV IS    0
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Fill missing coordinates and add hydrogens
+ CHARMM>    ic purge
+  
+ CHARMM>    ic param
+  
+ CHARMM>    ic fill pres
+  
+ CHARMM>    ic build
+  
+ CHARMM>    define test sele ( .not. type H* ) .and. ( .not. init ) show end
+ The following atoms are currently set:
+SEGId RESId RESName  .. TYPEs ..
+ SELRPN>      0 atoms have been selected out of    440
+  
+ CHARMM>    hbuild sele type H* end
+ SELRPN>    232 atoms have been selected out of    440
+ PRNHBD: CUToff Hydrogen Bond  distance =    0.5000   Angle =   90.0000
+         CuT switching ON HB dist. =     3.5000  OFf HB dist. =    4.0000
+         CuT switching ON Hb Angle =    50.0000  OFf Hb Angle =   70.0000
+         ACCEptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  FSHIft   VATOm    VFSWIt  
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 14.000 CTEXNB =999.000 CTONNB = 10.000 CTOFNB = 12.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found   1248 exclusions and   1136 interactions(1-4)
+ <MAKGRP> found    468 group exclusions.
+
+ CUToff Hydrogen Bond  distance =    0.5000           Angle =   90.0000
+ CuT switching ON HB dist. =     3.5000 OFf HB dist. =    4.0000
+ CuT switching ON Hb Angle =    50.0000 OFf Hb Angle =   70.0000
+ ACCEptor antecedents included
+ dihedral PHI STePs for spin =   10.0000
+ cutoff for water acceptor search CUTWat=    7.5000
+
+ Place: HA      ,        ,        , constructed for donor A000     2        LYS      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A000     2        LYS      CB      .
+ Place: HG1     ,HG2     ,        , constructed for donor A000     2        LYS      CG      .
+ Place: HD1     ,HD2     ,        , constructed for donor A000     2        LYS      CD      .
+ Place: HE1     ,HE2     ,        , constructed for donor A000     2        LYS      CE      .
+ Place: HN      ,        ,        , constructed for donor A000     3        LEU      N       .
+ Place: HA      ,        ,        , constructed for donor A000     3        LEU      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A000     3        LEU      CB      .
+ Place: HG      ,        ,        , constructed for donor A000     3        LEU      CG      .
+ Place: HN      ,        ,        , constructed for donor A000     4        VAL      N       .
+ Place: HA      ,        ,        , constructed for donor A000     4        VAL      CA      .
+ Place: HB      ,        ,        , constructed for donor A000     4        VAL      CB      .
+ Place: HN      ,        ,        , constructed for donor A000     5        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A000     5        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A000     5        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A000     5        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A000     5        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A000     5        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A000     5        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A000     5        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A000     6        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A000     6        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A000     6        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A000     6        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A000     6        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A000     6        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A000     6        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A000     6        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A000     7        ALA      N       .
+ Place: HA      ,        ,        , constructed for donor A000     7        ALA      CA      .
+ Place: HA      ,        ,        , constructed for donor A001     2        LYS      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A001     2        LYS      CB      .
+ Place: HG1     ,HG2     ,        , constructed for donor A001     2        LYS      CG      .
+ Place: HD1     ,HD2     ,        , constructed for donor A001     2        LYS      CD      .
+ Place: HE1     ,HE2     ,        , constructed for donor A001     2        LYS      CE      .
+ Place: HN      ,        ,        , constructed for donor A001     3        LEU      N       .
+ Place: HA      ,        ,        , constructed for donor A001     3        LEU      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A001     3        LEU      CB      .
+ Place: HG      ,        ,        , constructed for donor A001     3        LEU      CG      .
+ Place: HN      ,        ,        , constructed for donor A001     4        VAL      N       .
+ Place: HA      ,        ,        , constructed for donor A001     4        VAL      CA      .
+ Place: HB      ,        ,        , constructed for donor A001     4        VAL      CB      .
+ Place: HN      ,        ,        , constructed for donor A001     5        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A001     5        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A001     5        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A001     5        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A001     5        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A001     5        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A001     5        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A001     5        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A001     6        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A001     6        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A001     6        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A001     6        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A001     6        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A001     6        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A001     6        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A001     6        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A001     7        ALA      N       .
+ Place: HA      ,        ,        , constructed for donor A001     7        ALA      CA      .
+ Place: HA      ,        ,        , constructed for donor A002     2        LYS      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A002     2        LYS      CB      .
+ Place: HG1     ,HG2     ,        , constructed for donor A002     2        LYS      CG      .
+ Place: HD1     ,HD2     ,        , constructed for donor A002     2        LYS      CD      .
+ Place: HE1     ,HE2     ,        , constructed for donor A002     2        LYS      CE      .
+ Place: HN      ,        ,        , constructed for donor A002     3        LEU      N       .
+ Place: HA      ,        ,        , constructed for donor A002     3        LEU      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A002     3        LEU      CB      .
+ Place: HG      ,        ,        , constructed for donor A002     3        LEU      CG      .
+ Place: HN      ,        ,        , constructed for donor A002     4        VAL      N       .
+ Place: HA      ,        ,        , constructed for donor A002     4        VAL      CA      .
+ Place: HB      ,        ,        , constructed for donor A002     4        VAL      CB      .
+ Place: HN      ,        ,        , constructed for donor A002     5        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A002     5        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A002     5        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A002     5        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A002     5        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A002     5        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A002     5        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A002     5        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A002     6        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A002     6        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A002     6        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A002     6        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A002     6        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A002     6        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A002     6        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A002     6        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A002     7        ALA      N       .
+ Place: HA      ,        ,        , constructed for donor A002     7        ALA      CA      .
+ Place: HA      ,        ,        , constructed for donor A003     2        LYS      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A003     2        LYS      CB      .
+ Place: HG1     ,HG2     ,        , constructed for donor A003     2        LYS      CG      .
+ Place: HD1     ,HD2     ,        , constructed for donor A003     2        LYS      CD      .
+ Place: HE1     ,HE2     ,        , constructed for donor A003     2        LYS      CE      .
+ Place: HN      ,        ,        , constructed for donor A003     3        LEU      N       .
+ Place: HA      ,        ,        , constructed for donor A003     3        LEU      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A003     3        LEU      CB      .
+ Place: HG      ,        ,        , constructed for donor A003     3        LEU      CG      .
+ Place: HN      ,        ,        , constructed for donor A003     4        VAL      N       .
+ Place: HA      ,        ,        , constructed for donor A003     4        VAL      CA      .
+ Place: HB      ,        ,        , constructed for donor A003     4        VAL      CB      .
+ Place: HN      ,        ,        , constructed for donor A003     5        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A003     5        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A003     5        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A003     5        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A003     5        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A003     5        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A003     5        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A003     5        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A003     6        PHE      N       .
+ Place: HA      ,        ,        , constructed for donor A003     6        PHE      CA      .
+ Place: HB1     ,HB2     ,        , constructed for donor A003     6        PHE      CB      .
+ Place: HD1     ,        ,        , constructed for donor A003     6        PHE      CD1     .
+ Place: HE1     ,        ,        , constructed for donor A003     6        PHE      CE1     .
+ Place: HZ      ,        ,        , constructed for donor A003     6        PHE      CZ      .
+ Place: HD2     ,        ,        , constructed for donor A003     6        PHE      CD2     .
+ Place: HE2     ,        ,        , constructed for donor A003     6        PHE      CE2     .
+ Place: HN      ,        ,        , constructed for donor A003     7        ALA      N       .
+ Place: HA      ,        ,        , constructed for donor A003     7        ALA      CA      .
+
+ NBONDX:       411 atom and      0 group interactions within 14.00 A.
+ Spin: HT1     ,HT2     ,HT3     , constructed for donor A000     2        LYS      N       .
+
+ NBONDX:       222 atom and      0 group interactions within 14.00 A.
+ Spin: HZ1     ,HZ2     ,HZ3     , constructed for donor A000     2        LYS      NZ      .
+
+ NBONDX:       609 atom and      0 group interactions within 14.00 A.
+ Spin: HD11    ,HD12    ,HD13    , constructed for donor A000     3        LEU      CD1     .
+
+ NBONDX:       588 atom and      0 group interactions within 14.00 A.
+ Spin: HD21    ,HD22    ,HD23    , constructed for donor A000     3        LEU      CD2     .
+
+ NBONDX:       366 atom and      0 group interactions within 14.00 A.
+ Spin: HG11    ,HG12    ,HG13    , constructed for donor A000     4        VAL      CG1     .
+
+ NBONDX:       393 atom and      0 group interactions within 14.00 A.
+ Spin: HG21    ,HG22    ,HG23    , constructed for donor A000     4        VAL      CG2     .
+
+ NBONDX:       555 atom and      0 group interactions within 14.00 A.
+ Spin: HB1     ,HB2     ,HB3     , constructed for donor A000     7        ALA      CB      .
+
+ NBONDX:       645 atom and      0 group interactions within 14.00 A.
+ Spin: HT1     ,HT2     ,HT3     , constructed for donor A001     2        LYS      N       .
+
+ NBONDX:       687 atom and      0 group interactions within 14.00 A.
+ Spin: HZ1     ,HZ2     ,HZ3     , constructed for donor A001     2        LYS      NZ      .
+
+ NBONDX:       645 atom and      0 group interactions within 14.00 A.
+ Spin: HD11    ,HD12    ,HD13    , constructed for donor A001     3        LEU      CD1     .
+
+ NBONDX:       630 atom and      0 group interactions within 14.00 A.
+ Spin: HD21    ,HD22    ,HD23    , constructed for donor A001     3        LEU      CD2     .
+
+ NBONDX:       708 atom and      0 group interactions within 14.00 A.
+ Spin: HG11    ,HG12    ,HG13    , constructed for donor A001     4        VAL      CG1     .
+
+ NBONDX:       705 atom and      0 group interactions within 14.00 A.
+ Spin: HG21    ,HG22    ,HG23    , constructed for donor A001     4        VAL      CG2     .
+
+ NBONDX:       456 atom and      0 group interactions within 14.00 A.
+ Spin: HB1     ,HB2     ,HB3     , constructed for donor A001     7        ALA      CB      .
+
+ NBONDX:       438 atom and      0 group interactions within 14.00 A.
+ Spin: HT1     ,HT2     ,HT3     , constructed for donor A002     2        LYS      N       .
+
+ NBONDX:       432 atom and      0 group interactions within 14.00 A.
+ Spin: HZ1     ,HZ2     ,HZ3     , constructed for donor A002     2        LYS      NZ      .
+
+ NBONDX:       672 atom and      0 group interactions within 14.00 A.
+ Spin: HD11    ,HD12    ,HD13    , constructed for donor A002     3        LEU      CD1     .
+
+ NBONDX:       690 atom and      0 group interactions within 14.00 A.
+ Spin: HD21    ,HD22    ,HD23    , constructed for donor A002     3        LEU      CD2     .
+
+ NBONDX:       642 atom and      0 group interactions within 14.00 A.
+ Spin: HG11    ,HG12    ,HG13    , constructed for donor A002     4        VAL      CG1     .
+
+ NBONDX:       621 atom and      0 group interactions within 14.00 A.
+ Spin: HG21    ,HG22    ,HG23    , constructed for donor A002     4        VAL      CG2     .
+
+ NBONDX:       765 atom and      0 group interactions within 14.00 A.
+ Spin: HB1     ,HB2     ,HB3     , constructed for donor A002     7        ALA      CB      .
+
+ NBONDX:       711 atom and      0 group interactions within 14.00 A.
+ Spin: HT1     ,HT2     ,HT3     , constructed for donor A003     2        LYS      N       .
+
+ NBONDX:       492 atom and      0 group interactions within 14.00 A.
+ Spin: HZ1     ,HZ2     ,HZ3     , constructed for donor A003     2        LYS      NZ      .
+
+ NBONDX:       615 atom and      0 group interactions within 14.00 A.
+ Spin: HD11    ,HD12    ,HD13    , constructed for donor A003     3        LEU      CD1     .
+
+ NBONDX:       642 atom and      0 group interactions within 14.00 A.
+ Spin: HD21    ,HD22    ,HD23    , constructed for donor A003     3        LEU      CD2     .
+
+ NBONDX:       396 atom and      0 group interactions within 14.00 A.
+ Spin: HG11    ,HG12    ,HG13    , constructed for donor A003     4        VAL      CG1     .
+
+ NBONDX:       465 atom and      0 group interactions within 14.00 A.
+ Spin: HG21    ,HG22    ,HG23    , constructed for donor A003     4        VAL      CG2     .
+
+ NBONDX:       303 atom and      0 group interactions within 14.00 A.
+ Spin: HB1     ,HB2     ,HB3     , constructed for donor A003     7        ALA      CB      .
+  
+ CHARMM>     
+  
+ CHARMM>    ! Write PSF and coordinates
+ CHARMM>    write psf card name @M_unit.psf
+ Parameter: M -> "2Y2A"
+ VOPEN> Attempting to open::2y2a_unit.psf::
+ RDTITL> * 2Y2A UNIT CELL
+ RDTITL> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    write coor card name @M_unit.cor
+ Parameter: M -> "2Y2A"
+ VOPEN> Attempting to open::2y2a_unit.cor::
+ RDTITL> * 2Y2A UNIT CELL
+ RDTITL> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+$$$$$$  New timer profile $$$$$
+ Total time                      0.04 Other:            0.00
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MOST SEVERE WARNING WAS AT LEVEL  0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.05  SECONDS 
+                         CPU TIME:     0.05  SECONDS 

@@ -22,8 +22,12 @@ public:
   XtalTransformer(const std::string &pdbFileName);
 
 public:
+  void writeXtalFile(const std::string &fileName);
   void generateUnitCell(void);
   void generateSuperCell(void);
+  void transformUnitCellReplicasFractional(
+      const std::vector<std::array<double, 9>> &rotations,
+      const std::vector<std::array<double, 3>> &translations);
   // void writeCharmmCoordinateFile(const std::string &fileName);
   void writePdbFile(const std::string &pdbFileName);
 
@@ -48,9 +52,12 @@ private:
   std::size_t m_NumXtalOperations;
   std::vector<std::array<double, 9>> m_UnitCellRotations;
   std::vector<std::array<double, 3>> m_UnitCellTranslations;
+  std::size_t m_NumAsymmetricAtoms;
+  std::size_t m_NumUnitCellAtoms;
+  std::size_t m_NumSuperCellAtoms;
   std::size_t m_NumAtoms;
-  std::size_t m_TotNumAtoms;
+  std::vector<Atom> m_AsymmetricAtoms;
+  std::vector<Atom> m_UnitCellAtoms;
+  std::vector<Atom> m_SuperCellAtoms;
   std::vector<Atom> m_Atoms;
-  bool m_HasUnitCellBeenGenerated;
-  bool m_HasSuperCellBeenGenerated;
 };

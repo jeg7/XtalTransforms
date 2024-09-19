@@ -1,0 +1,114 @@
+* build_2y2a_super.inp: Generates a PSF and coordinate for 2y2a super cell
+* jeg240912
+*
+
+iofo exte
+
+! Number of segments in the unit cell
+set nxtal 4
+
+! Protein name and charmm directory
+set M 2y2a
+set chm_dir /home/jeg/sw/charmm/c49a10
+
+! Topology and parameter files
+read rtf card name @{chm_dir}/toppar/top_all36_prot.rtf
+read para card flex name @{chm_dir}/toppar/par_all36m_prot.prm
+stream @{chm_dir}/toppar/toppar_water_ions.str
+
+! Read sequence card for single 2y2a segment
+read sequ card
+* 2y2a sequence
+*
+6
+LYS LEU VAL PHE PHE ALA
+
+! Generate original PSF
+gene setup A000 first NTER last CTER
+
+! Duplicate segment for the rest of the molecules in the unit cell
+set i 1
+label L0
+if @i .lt. 10 then
+gene A00@i dupl A000 setup
+else
+if @i .lt. 100 then
+gene A0@i dupl A000 setup
+else
+if @i .lt. 1000 then
+gene A@i dupl A000 setup
+endif
+endif
+endif
+incr i by 1
+if @i .lt. @{nxtal} goto L0
+
+set i 1
+label L2
+calc offset @i * @{nxtal}
+set j 0
+label L3
+calc k @{offset} + @j
+if @k .lt. 10 then
+gene A00@k dupl A000 setup
+else
+if @k .lt. 100 then
+gene A0@k dupl A000 setup
+else
+if @k .lt. 1000 then
+gene A@k dupl A000 setup
+endif
+endif
+endif
+incr j by 1
+if @j .lt. @{nxtal} goto L3
+incr i by 1
+if @i .lt. 8 goto L2
+
+! Renumber residues
+set i 0
+label L4
+set j 6
+set k 7
+label L5
+if @i .lt. 10 then
+rename resi @k sele segi A00@i .and. resi @j end
+else
+if @i .lt. 100 then
+rename resi @k sele segi A0@i .and. resi @j end
+else
+if @i .lt. 1000 then
+rename resi @k sele segi A@i .and. resi @j end
+endif
+endif
+endif
+decr j by 1
+decr k by 1
+if @j .ge. 1 goto L5
+incr i by 1
+if @i .lt. ?nseg goto L4
+
+! Read coordinates
+! Here we can ignore the warnings about TRP not having the "O" atom since we are
+! adding the CTER patch to it
+read coor pdb resi name @M_super.pdb
+
+! Fill missing coordinates and add hydrogens
+ic purge
+ic param
+ic fill pres
+ic build
+define test sele ( .not. type H* ) .and. ( .not. init ) show end
+hbuild sele type H* end
+
+! Write PSF and coordinates
+write psf card name @M_super.psf
+* @M super cell
+*
+
+write coor card name @M_super.cor
+* @M super cell
+*
+
+
+stop
